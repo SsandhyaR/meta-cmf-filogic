@@ -101,10 +101,10 @@ do_install:append() {
     fi
 }
 
-do_install:append_broadband-dev() {
+do_install:append:broadband-dev() {
 install -m 0755 ${S}/devicerpi/lib/rdk/build_component_script.sh ${D}${base_libdir}/rdk
 }
-do_install:append_bootbroadband() {
+do_install:append:bootbroadband() {
     install -m 0755 ${S}/devicerpi/lib/rdk/flash.sh ${D}${base_libdir}/rdk
     install -m 0755 ${S}/devicerpi/lib/rdk/vm-to-image.sh ${D}${base_libdir}/rdk
     install -m 0755 ${S}/devicerpi/lib/rdk/curl-upload.sh ${D}${base_libdir}/rdk
@@ -115,7 +115,7 @@ do_install:append_bootbroadband() {
 
 SYSTEMD_SERVICE:${PN}:append = " dropbear.service disable_systemd_restart_param.service ntpd.service swupdate.service "
 SYSTEMD_SERVICE:${PN}:remove_broadband = "dropbear.service"
-SYSTEMD_SERVICE:${PN}:append_bootbroadband += " boot-time-upload.service monitor-upload.service"
+SYSTEMD_SERVICE:${PN}:append:bootbroadband += " boot-time-upload.service monitor-upload.service"
 
 FILES:${PN}:append = " ${systemd_unitdir}/system/* /fss/gw/rdklogger/* /usr/ccsp/tad/*"
-FILES:${PN}:append_bootbroadband = " ${systemd_unitdir}/system/*"
+FILES:${PN}:append:bootbroadband = " ${systemd_unitdir}/system/*"

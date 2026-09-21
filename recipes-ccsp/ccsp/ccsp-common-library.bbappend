@@ -2,8 +2,8 @@ require ccsp_common_filogic.inc
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/${BPN}:${THISDIR}/files:"
 
-DEPENDS:append_filogic = " breakpad"
-CXXFLAGS:append_filogic = " \
+DEPENDS:append:filogic = " breakpad"
+CXXFLAGS:append:filogic = " \
                                 -I${STAGING_INCDIR}/breakpad \
                                 -std=c++11 \
                               "

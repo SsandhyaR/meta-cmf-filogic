@@ -11,7 +11,7 @@ SRC_URI:append_client = " \
         file://wpa_supplicant.service \
         file://configure_wpa_supplicant.sh \
 "
-SRC_URI:append_extender = " file://wpa_supplicant-global.service"
+SRC_URI:append:extender = " file://wpa_supplicant-global.service"
 
 EXTRA_OEMAKE = "CONFIG_BUILD_WPA_CLIENT_SO=y"
 FILES_SOLIBSDEV = ""
@@ -37,7 +37,7 @@ do_install:append_client() {
         install -D -m 0755 ${UNPACKDIR}/configure_wpa_supplicant.sh ${D}${libdir}/rdk/
 }
 
-do_install:append_extender () {
+do_install:append:extender () {
         install -m 0755 ${UNPACKDIR}/wpa_supplicant-global.service ${D}${systemd_unitdir}/system/
 }
 
